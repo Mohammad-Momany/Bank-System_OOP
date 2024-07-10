@@ -296,13 +296,3 @@ public:
     }
 
 };
-
-
-
-static bool IsClientExist(string AccountNumber)
-{
-
-    clsBankClient Client1 = clsBankClient::Find(AccountNumber);
-
-    return (!Client1.IsEmpty());
-};

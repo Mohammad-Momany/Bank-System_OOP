@@ -144,7 +144,7 @@
     <ClInclude Include="clsListUsersScreen.h" />
     <ClInclude Include="clsLoginScreen.h" />
     <ClInclude Include="clsMainScreen.h" />
-    <ClInclude Include="clsManageUsers.h" />
+    <ClInclude Include="clsManageUsersScreen.h" />
     <ClInclude Include="clsPerson.h" />
     <ClInclude Include="clsScreen.h" />
     <ClInclude Include="clsString.h" />

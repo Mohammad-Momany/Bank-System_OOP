@@ -8,7 +8,7 @@
 #include "clsUpdateClientScreen.h"
 #include "clsFindClientScreen.h"
 #include "clsTransactionsScreen.h"
-#include "clsManageUsers.h"
+#include "clsManageUsersScreen.h"
 #include "Global.h"
 #include <iomanip>
 

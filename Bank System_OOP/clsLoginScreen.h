@@ -15,7 +15,7 @@ private:
     static  bool _Login()
     {
         bool LoginFaild = false;
-        short FaildLoginCount = 3;
+        short FaildLoginCount = 0;
 
         string Username, Password;
         do
@@ -23,14 +23,14 @@ private:
 
             if (LoginFaild)
             {
-                FaildLoginCount--;
+                FaildLoginCount++;
 
                 cout << "\nInvlaid Username/Password!";
-                cout << "\nYou have " << (FaildLoginCount)
+                cout << "\nYou have " << (3 - FaildLoginCount)
                     << " Trial(s) to login.\n\n";
             }
 
-            if (!FaildLoginCount)
+            if (FaildLoginCount == 3)
             {
                 cout << "\nYour are Locked after 3 faild trails \n\n";
                 return false;
@@ -48,8 +48,14 @@ private:
 
         } while (LoginFaild);
 
+        CurrentUser.RegisterLogIn();
         clsMainScreen::ShowMainMenue();
         return true;
+    }
+
+    void _Log()
+    {
+
     }
 
 public:

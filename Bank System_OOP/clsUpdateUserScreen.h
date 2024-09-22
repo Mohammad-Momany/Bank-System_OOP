@@ -115,6 +115,13 @@ private:
             Permissions += clsUser::enPermissions::pManageUsers;
         }
 
+        cout << "\nShow Login Regiser Records? y/n? ";
+        cin >> Answer;
+        if (Answer == 'y' || Answer == 'Y')
+        {
+            Permissions += clsUser::enPermissions::pLoginRegister;
+        }
+
         return Permissions;
 
     }

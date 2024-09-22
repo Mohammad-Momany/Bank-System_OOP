@@ -138,11 +138,13 @@ private:
         case enMainMenuOptions::eShowTransactionsMenue:
             system("cls");
             _ShowTransactionsMenue();
+            _GoBackToMainMenue();
             break;
 
         case enMainMenuOptions::eManageUsers:
             system("cls");
             _ShowManageUsersMenue();
+            _GoBackToMainMenue();
             break;
 
         case enMainMenuOptions::eLoginRegister:

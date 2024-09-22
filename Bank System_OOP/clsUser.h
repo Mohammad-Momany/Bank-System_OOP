@@ -18,6 +18,8 @@ private:
     string _Password;
     int _Permissions;
 
+    struct stLoginRegisterRecord;
+
     bool _MarkedForDelete = false;
 
     string _PrepareLogInRecord(string Seperator = "#//#")
@@ -28,6 +30,51 @@ private:
         LoginRecord += Password + Seperator;
         LoginRecord += to_string(Permissions);
         return LoginRecord;
+    }
+
+    static stLoginRegisterRecord  _ConvertLinetoLoginRegisterObject(string Line, string Seperator = "#//#")
+    {
+
+        vector<string> vLoginRegister;
+        vLoginRegister = clsString::Split(Line, Seperator);
+
+        stLoginRegisterRecord  RegisterLoginData;
+        RegisterLoginData.Date = vLoginRegister[0];
+        RegisterLoginData.UserName = vLoginRegister[1];
+        RegisterLoginData.Password = vLoginRegister[2];
+        RegisterLoginData.Permissions = stoi(vLoginRegister[3]);
+
+        return RegisterLoginData;
+    }
+
+    static  vector <stLoginRegisterRecord > _LoadLoginRegisterDataFromFile()
+    {
+
+        vector <stLoginRegisterRecord > vRegisters;
+
+        fstream MyFile;
+        MyFile.open("LoginRegister.txt", ios::in);//read Mode
+
+        if (MyFile.is_open())
+        {
+
+            string Line;
+
+
+            while (getline(MyFile, Line))
+            {
+
+                stLoginRegisterRecord  Register = _ConvertLinetoLoginRegisterObject(Line);
+
+                vRegisters.push_back(Register);
+            }
+
+            MyFile.close();
+
+        }
+
+        return vRegisters;
+
     }
 
     static clsUser _ConvertLinetoUserObject(string Line, string Seperator = "#//#")
@@ -165,6 +212,13 @@ public:
     enum enPermissions {
         eAll = -1, pListClients = 1, pAddNewClient = 2, pDeleteClient = 4,
         pUpdateClients = 8, pFindClient = 16, pTranactions = 32, pManageUsers = 64
+    };
+
+    struct stLoginRegisterRecord {
+        string Date;
+        string UserName;
+        string Password;
+        int Permissions;
     };
 
     clsUser(enMode Mode, string FirstName, string LastName,
@@ -389,6 +443,10 @@ public:
 
     }
 
+    static vector <stLoginRegisterRecord > GetRegistersList()
+    {
+        return _LoadLoginRegisterDataFromFile();
+    }
 };
 
 

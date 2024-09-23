@@ -9,10 +9,6 @@ class clsTransferScreen :protected clsScreen
 {
 
 private:
-    enum enumTransferUser {
-        From = 1,
-        To = 2
-    };
     static void _PrintClient(clsBankClient Client)
     {
         cout << "\nClient Card:";
@@ -24,18 +20,10 @@ private:
 
     }
 
-    static string _ReadAccountNumber(enumTransferUser TransferUser)
+    static string _ReadAccountNumber()
     {
         string AccountNumber;
-        cout << "\nPlease Enter Account Number to Transfer ";
-        if (TransferUser == enumTransferUser::From)
-        {
-            cout << "From: ";
-        }
-        else {
-            cout << "To: ";
-        }
-
+        cout << "\nPlease Enter Account Number to Transfer From: ";
         AccountNumber = clsInputValidate::ReadString();
         while (!clsBankClient::IsClientExist(AccountNumber))
         {
@@ -68,11 +56,11 @@ public:
 
         _DrawScreenHeader("\tTransfer Screen");
 
-        clsBankClient SourceClient = clsBankClient::Find(_ReadAccountNumber(enumTransferUser::From));
+        clsBankClient SourceClient = clsBankClient::Find(_ReadAccountNumber());
 
         _PrintClient(SourceClient);
 
-        clsBankClient DestinationClient = clsBankClient::Find(_ReadAccountNumber(enumTransferUser::To));
+        clsBankClient DestinationClient = clsBankClient::Find(_ReadAccountNumber());
 
         _PrintClient(DestinationClient);
 
@@ -84,7 +72,7 @@ public:
         cin >> Answer;
         if (Answer == 'Y' || Answer == 'y')
         {
-            if (SourceClient.Transfer(Amount, DestinationClient))
+            if (SourceClient.Transfer(Amount, DestinationClient, CurrentUser.UserName))
             {
                 cout << "\nTransfer done successfully\n";
             }

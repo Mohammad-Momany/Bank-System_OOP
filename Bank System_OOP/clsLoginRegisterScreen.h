@@ -12,7 +12,7 @@ private:
     static void _PrintRegisterRecordLine(clsUser::stLoginRegisterRecord  Register)
     {
 
-        cout << setw(8) << left << "" << "| " << setw(30) << left << Register.Date;
+        cout << setw(8) << left << "" << "| " << setw(30) << left << Register.DateTime;
         cout << "| " << setw(20) << left << Register.UserName;
         cout << "| " << setw(20) << left << Register.Password;
         cout << "| " << setw(20) << left << Register.Permissions;
@@ -24,12 +24,12 @@ public:
     static void ShowLoginRegisterList()
     {
 
-        if (!CheckAccessRights(clsUser::enPermissions::pLoginRegister))
+        if (!CheckAccessRights(clsUser::enPermissions::pShowLogInRegister))
         {
             return;// this will exit the function and it will not continue
         }
 
-        vector <clsUser::stLoginRegisterRecord > vRegister = clsUser::GetRegistersList();
+        vector <clsUser::stLoginRegisterRecord > vRegister = clsUser::GetLoginRegisterList();
 
         string Title = "\t  Login Register List Screen";
         string SubTitle = "\t    (" + to_string(vRegister.size()) + ") User(s).";

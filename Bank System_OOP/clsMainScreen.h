@@ -10,7 +10,7 @@
 #include "clsTransactionsScreen.h"
 #include "clsManageUsersScreen.h"
 #include "clsLoginRegisterScreen.h"
-#include "clsCurrencyExchange.h"
+#include "clsCurrencyExchangeMainScreen.h"
 #include "Global.h"
 #include <iomanip>
 
@@ -91,8 +91,7 @@ private:
 
     static void _ShowCurrencyExchangesMenue()
     {
-        
-
+        clsCurrencyExchangeMainScreen::ShowCurrenciesMenue();
     }
 
     static void _Logout()
